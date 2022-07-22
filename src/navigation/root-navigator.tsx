@@ -1,12 +1,14 @@
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, NavigationContainerProps } from '@react-navigation/native'
 import React from 'react'
 import { BottomTabNavigator } from './bottom-tab-navigator'
-import { ActivityIndicator } from 'react-native'
-import { color } from '../theme'
 
-export const RootNavigator = () => {
+interface IRootNavigator extends Omit<NavigationContainerProps, 'children'> {
+  onReady: () => void
+}
+
+export const RootNavigator = (props: IRootNavigator) => {
   return (
-    <NavigationContainer fallback={<ActivityIndicator color={color.primary} />}>
+    <NavigationContainer {...props}>
       <BottomTabNavigator />
     </NavigationContainer>
   )

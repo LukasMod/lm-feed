@@ -1,7 +1,40 @@
-export const fontFamily = {}
+import { TextStyle } from 'react-native'
+import { color } from './color'
+
+export const typography = {
+  regular: 'Montserrat-Regular',
+  medium: 'Montserrat-Medium',
+  bold: 'Montserrat-SemiBold',
+}
 
 export const fontSize = {
   s: 10,
   m: 12,
   l: 16,
+}
+
+// text presets
+export const tpBoldTextL: TextStyle = {
+  fontFamily: typography.bold,
+  fontSize: fontSize.l,
+  lineHeight: 26,
+  color: color.text,
+}
+export const tpBoldTextM: TextStyle = {
+  fontFamily: typography.bold,
+  fontSize: fontSize.m,
+  lineHeight: 15,
+  color: color.text,
+}
+export const tpMediumDescriptionM: TextStyle = {
+  fontFamily: typography.medium,
+  fontSize: fontSize.m,
+  lineHeight: 15,
+  color: color.descriptionText,
+}
+export const tpMediumPrimaryM: TextStyle = {
+  fontFamily: typography.medium,
+  fontSize: fontSize.m,
+  lineHeight: 15,
+  color: color.primary,
 }

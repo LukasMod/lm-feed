@@ -1,8 +1,13 @@
 import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TextStyle, View } from 'react-native'
+import { tpBoldTextL } from '../theme'
 import { HomeScreenNavProp } from '../types/navigation'
+
+const TEXT: TextStyle = {
+  ...tpBoldTextL,
+}
 
 export const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavProp>()
@@ -12,8 +17,9 @@ export const HomeScreen = () => {
       <Text
         onPress={() => {
           navigation.navigate('CreatePost')
-        }}>
-        HomeScreen
+        }}
+        style={TEXT}>
+        HomeScreen22
       </Text>
       <StatusBar style="auto" />
     </View>
