@@ -2,6 +2,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 export type BottomTabNavigatorParamList = {
   HomeStack: undefined
+  ConversationStack: undefined
+  FriendStack: undefined
+  PaymentStack: undefined
 }
 export type HomeStackNavigatorParamList = {
   Home: undefined
