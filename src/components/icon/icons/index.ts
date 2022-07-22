@@ -6,6 +6,7 @@ export const icons = {
   friends: require('./add-group-38.png'),
   dollar: require('./dollar-37.png'),
   dot: require('./Ellipse-405.png'),
+  defaultUserImage: require('./default-user-image.png'),
 }
 export enum Icons {
   SEARCH = 'search',
@@ -15,4 +16,5 @@ export enum Icons {
   FRIENDS = 'friends',
   DOLLAR = 'dollar',
   DOT = 'dot',
+  DEFAULT_USER_IMAGE = 'defaultUserImage',
 }

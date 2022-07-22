@@ -24,13 +24,13 @@ export const BottomTabNavigator = () => {
         tabBarShowLabel: false,
         tabBarActiveTintColor: color.white,
         tabBarStyle: TAB_BAR,
+        headerShown: false,
       }}>
       <Tab.Screen
         name="HomeStack"
         component={HomeStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => <IconTabBar icon={Icons.HOME} isFocused={focused} />,
-          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -38,7 +38,6 @@ export const BottomTabNavigator = () => {
         component={HomeStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => <IconTabBar icon={Icons.CONVERSATION} isFocused={focused} />,
-          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -46,7 +45,6 @@ export const BottomTabNavigator = () => {
         component={HomeStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => <IconTabBar icon={Icons.FRIENDS} isFocused={focused} />,
-          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -54,7 +52,6 @@ export const BottomTabNavigator = () => {
         component={HomeStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => <IconTabBar icon={Icons.DOLLAR} isFocused={focused} />,
-          headerShown: false,
         }}
       />
     </Tab.Navigator>
