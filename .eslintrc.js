@@ -14,12 +14,7 @@ module.exports = {
     },
     project: './tsconfig.json',
   },
-  settings: {
-    react: {
-      pragma: 'React',
-      version: 'detect',
-    },
-  },
+  ignorePatterns: ['.eslintrc.js', 'babel.config.js'],
   rules: {
     '@typescript-eslint/ban-ts-ignore': 0,
     '@typescript-eslint/ban-ts-comment': 0,
