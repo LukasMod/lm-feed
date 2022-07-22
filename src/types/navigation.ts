@@ -1,14 +1,17 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-export type MainNavigatorParamList = {
+export type BottomTabNavigatorParamList = {
+  HomeStack: undefined
+}
+export type HomeStackNavigatorParamList = {
   Home: undefined
   CreatePost: undefined
   Post: undefined
 }
 
-export type HomeScreenNavProp = NativeStackNavigationProp<MainNavigatorParamList, 'Home'>
+export type HomeScreenNavProp = NativeStackNavigationProp<HomeStackNavigatorParamList, 'Home'>
 export type CreatePostScreenNavProp = NativeStackNavigationProp<
-  MainNavigatorParamList,
+  HomeStackNavigatorParamList,
   'CreatePost'
 >
-export type PostScreenNavProp = NativeStackNavigationProp<MainNavigatorParamList, 'Post'>
+export type PostScreenNavProp = NativeStackNavigationProp<HomeStackNavigatorParamList, 'Post'>
