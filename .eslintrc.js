@@ -20,7 +20,6 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['**/*.png'],
   rules: {
     '@typescript-eslint/ban-ts-ignore': 0,
     '@typescript-eslint/ban-ts-comment': 0,

@@ -16,6 +16,6 @@
     "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
-  "include": ["App.js", "src", ".eslintrc.js"],
+  "include": ["App.js", "src", ".eslintrc.js", "babel.config.js"],
   "extends": "expo/tsconfig.base"
 }
