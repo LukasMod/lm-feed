@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ImageStyle, TouchableOpacity, ViewStyle, TextInput, TextStyle } from 'react-native'
-import { color, tpMediumTextM } from '../../theme'
+import { color, rounding, tpMediumTextM } from '../../theme'
 import { metrics } from '../../utils'
 import { Icon } from '../icon/icon'
 import { Icons } from '../icon/icons'
@@ -18,10 +18,10 @@ const CONTAINER: ViewStyle = {
   alignItems: 'center',
   padding: 12,
   flexDirection: 'row',
-  borderRadius: 10,
+  borderRadius: rounding.regular,
 }
 const ICON: ImageStyle = {}
-const TEXT_STYLE: TextStyle = {
+const TEXT: TextStyle = {
   ...tpMediumTextM,
   paddingHorizontal: 10,
   flex: 1,
@@ -40,7 +40,7 @@ export const InputSearchbar = ({ setText, text }: IInputSearchBar) => {
       activeOpacity={metrics.activeOpacity}
       onPress={onPressSearchbar}>
       <Icon style={ICON} icon={Icons.SEARCH} size={19} />
-      <TextInput style={TEXT_STYLE} ref={inputRef} onChangeText={setText} value={text} />
+      <TextInput style={TEXT} ref={inputRef} onChangeText={setText} value={text} />
     </TouchableOpacity>
   )
 }

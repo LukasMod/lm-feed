@@ -2,9 +2,9 @@ import { TextStyle } from 'react-native'
 import { color } from './color'
 
 export const typography = {
-  regular: 'Montserrat-Regular',
-  medium: 'Montserrat-Medium',
-  bold: 'Montserrat-SemiBold',
+  regular: 'Montserrat-Regular', // 400 weight
+  medium: 'Montserrat-Medium', // 500 weight
+  bold: 'Montserrat-SemiBold', // 700 weight
 }
 
 export const fontSize = {

@@ -15,7 +15,7 @@ const CONTAINER: ViewStyle = {
   backgroundColor: color.white,
   height: 50,
   width: 50,
-  borderRadius: 100,
+  borderRadius: 50,
   justifyContent: 'center',
   alignItems: 'center',
 }
@@ -23,7 +23,7 @@ const IMAGE: ImageStyle = {
   resizeMode: 'contain',
   height: 44,
   width: 44,
-  borderRadius: 100,
+  borderRadius: 44,
 }
 
 export const ImageUser = ({ style, imageUri, containerStyle, onPress }: IUserImage) => {
