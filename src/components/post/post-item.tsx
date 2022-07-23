@@ -84,7 +84,7 @@ export const PostItem = ({ item }: IPostItem) => {
   return (
     <View style={CONTAINER}>
       <View style={HEADER_CONTAINER}>
-        <ImageUser />
+        <ImageUser imageUrl={item.avatarImageUrl} />
         <Text style={HEADER_TEXT}>{item.name}</Text>
       </View>
       {item.imageUrl && <Image style={IMAGE} source={icons[Icons.IMAGE_VIEW]} />}
