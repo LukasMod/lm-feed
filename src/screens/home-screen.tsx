@@ -1,9 +1,16 @@
 import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
-import React from 'react'
-import { StyleSheet, Text, TextStyle, View } from 'react-native'
+import React, { useState } from 'react'
+import { Text, TextStyle, View, ViewStyle } from 'react-native'
+import { InputSearchbar } from '../components'
 import { tpBoldTextL } from '../theme'
 import { HomeScreenNavProp } from '../types/navigation'
+
+const FULL: ViewStyle = {
+  flex: 1,
+  backgroundColor: 'rgba(255, 100, 2, 0.2)',
+  paddingVertical: 20,
+}
 
 const TEXT: TextStyle = {
   ...tpBoldTextL,
@@ -11,9 +18,11 @@ const TEXT: TextStyle = {
 
 export const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavProp>()
+  const [searchText, setSearchText] = useState('')
 
   return (
-    <View style={styles.container}>
+    <View style={FULL}>
+      <InputSearchbar setText={setSearchText} text={searchText} />
       <Text
         onPress={() => {
           navigation.navigate('CreatePost')
@@ -25,12 +34,3 @@ export const HomeScreen = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    // backgroundColor: '#fff',
-    flex: 1,
-    justifyContent: 'center',
-  },
-})

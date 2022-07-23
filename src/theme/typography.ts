@@ -38,3 +38,9 @@ export const tpMediumPrimaryM: TextStyle = {
   lineHeight: 15,
   color: color.primary,
 }
+export const tpMediumTextM: TextStyle = {
+  fontFamily: typography.medium,
+  fontSize: fontSize.m,
+  lineHeight: 15,
+  color: color.text,
+}

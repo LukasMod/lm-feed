@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { ImageStyle, TouchableOpacity, Insets, StyleProp, ViewStyle, Image } from 'react-native'
+import { color } from '../../theme'
 import { metrics } from '../../utils'
 import { icons, Icons } from './icons'
 
@@ -14,6 +15,7 @@ export interface IIcon {
 
 const IMAGE: ImageStyle = {
   resizeMode: 'contain',
+  tintColor: color.text,
 }
 
 export const Icon = ({ style, icon, containerStyle, size = 25, onPress, hitSlop }: IIcon) => {
