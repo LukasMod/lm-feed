@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { TouchableOpacity, ViewStyle, TextStyle, Text } from 'react-native'
 import { color, rounding, spacing, tpMediumDescriptionM } from '../../theme'
-import { IBadge } from '../../types/badge'
+import { IBadge } from '../../types'
 import { metrics } from '../../utils'
 
 const CONTAINER: ViewStyle = {

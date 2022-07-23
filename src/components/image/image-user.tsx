@@ -8,32 +8,41 @@ export interface IUserImage {
   style?: StyleProp<ImageStyle>
   containerStyle?: StyleProp<ViewStyle>
   onPress?: () => void
-  imageUri?: string
+  imageUrl?: string
+  withBorder?: boolean
 }
 
 const CONTAINER: ViewStyle = {
-  backgroundColor: color.white,
-  height: 50,
-  width: 50,
-  borderRadius: 50,
+  height: 48,
+  width: 48,
+  borderRadius: 48,
   justifyContent: 'center',
   alignItems: 'center',
+  borderWidth: 2,
+  borderColor: 'transparent',
+}
+const BORDER: ViewStyle = {
+  borderColor: color.white,
 }
 const IMAGE: ImageStyle = {
   resizeMode: 'contain',
-  height: 44,
-  width: 44,
-  borderRadius: 44,
+  height: 45,
+  width: 45,
+  borderRadius: 45,
 }
 
-export const ImageUser = ({ style, imageUri, containerStyle, onPress }: IUserImage) => {
+export const ImageUser = ({ style, imageUrl, containerStyle, onPress, withBorder }: IUserImage) => {
   return (
     <TouchableOpacity
-      style={[CONTAINER, containerStyle]}
+      style={[CONTAINER, withBorder && BORDER, containerStyle]}
       onPress={onPress}
       disabled={!onPress}
       activeOpacity={metrics.activeOpacity}>
-      <Image style={[IMAGE, style]} source={icons[Icons.DEFAULT_USER_IMAGE]} />
+      {imageUrl ? (
+        <Image style={[IMAGE, style]} source={{ uri: imageUrl }} />
+      ) : (
+        <Image style={[IMAGE, style]} source={icons[Icons.DEFAULT_USER_IMAGE]} />
+      )}
     </TouchableOpacity>
   )
 }

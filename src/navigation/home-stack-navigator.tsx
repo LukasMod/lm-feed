@@ -29,7 +29,7 @@ export const HomeStackNavigator = () => {
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ title: 'Newsfeed', headerRight: () => <ImageUser /> }}
+        options={{ title: 'Newsfeed', headerRight: () => <ImageUser withBorder/> }}
       />
       <HomeStack.Screen name="CreatePost" component={CreatePostScreen} />
       <HomeStack.Screen name="Post" component={PostScreen} />

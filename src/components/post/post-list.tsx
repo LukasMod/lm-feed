@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { ViewStyle, FlatList, View } from 'react-native'
 import { color, spacing } from '../../theme'
-import { IBadge } from '../../types'
-import { BadgeItem } from './badge-item'
+import { IPost } from '../../types'
+import { PostItem } from './post-item'
 
-export interface IBadgeList {
-  badges?: IBadge[]
+export interface IPostList {
+  posts?: IPost[]
 }
 
 const CONTENT: ViewStyle = {
@@ -13,18 +13,16 @@ const CONTENT: ViewStyle = {
   backgroundColor: color.background,
 }
 
-const keyExtractor = (item: IBadge) => item.id
+const keyExtractor = (item: IPost) => item.id
 
-export const BadgeList = ({ badges }: IBadgeList) => {
+export const PostList = ({ posts }: IPostList) => {
   return (
     <View>
       <FlatList
         contentContainerStyle={CONTENT}
-        data={badges}
-        renderItem={BadgeItem}
+        data={posts}
+        renderItem={PostItem}
         keyExtractor={keyExtractor}
-        horizontal
-        showsHorizontalScrollIndicator={false}
       />
     </View>
   )
