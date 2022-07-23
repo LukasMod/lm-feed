@@ -1,11 +1,27 @@
 import React from 'react'
-import { ViewStyle } from 'react-native'
+import { View, ViewStyle, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BottomTabNavigatorParamList } from '../types/navigation'
 import { color } from '../theme'
 import { HomeStackNavigator } from './home-stack-navigator'
 import { IconTabBar } from '../components'
 import { Icons } from '../components/icon/icons'
+import { useRoute } from '@react-navigation/native'
+
+const FULL: ViewStyle = {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
+const EmptyScreen = () => {
+  const route = useRoute()
+  return (
+    <View style={FULL}>
+      <Text>{route?.name}</Text>
+    </View>
+  )
+}
 
 const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>()
 
@@ -35,21 +51,21 @@ export const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="ConversationStack"
-        component={HomeStackNavigator}
+        component={EmptyScreen}
         options={{
           tabBarIcon: ({ focused }) => <IconTabBar icon={Icons.CONVERSATION} isFocused={focused} />,
         }}
       />
       <Tab.Screen
         name="FriendStack"
-        component={HomeStackNavigator}
+        component={EmptyScreen}
         options={{
           tabBarIcon: ({ focused }) => <IconTabBar icon={Icons.FRIENDS} isFocused={focused} />,
         }}
       />
       <Tab.Screen
         name="PaymentStack"
-        component={HomeStackNavigator}
+        component={EmptyScreen}
         options={{
           tabBarIcon: ({ focused }) => <IconTabBar icon={Icons.DOLLAR} isFocused={focused} />,
         }}
