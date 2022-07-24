@@ -10,8 +10,9 @@ export interface IPostList {
 }
 
 const CONTENT: ViewStyle = {
-  padding: spacing.screen,
   backgroundColor: color.background,
+  paddingHorizontal: spacing.screen,
+  paddingBottom: spacing.screen + 70,
 }
 
 const keyExtractor = (item: IPost) => item.id

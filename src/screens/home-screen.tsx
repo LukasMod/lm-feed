@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, ViewStyle } from 'react-native'
 import { BadgeList, InputSearchbar, PostList } from '../components'
 import { spacing } from '../theme'
@@ -7,7 +7,6 @@ import { IBadge } from '../types'
 import { HomeScreenNavProp } from '../types/navigation'
 import { observer } from 'mobx-react-lite'
 
-import POSTS from '../mocks/posts.json'
 import { useStores } from '../hooks'
 
 const FULL: ViewStyle = {
@@ -28,15 +27,19 @@ export const HomeScreen = observer(() => {
 
   const {
     stores: {
-      postStore: { postsOffset, incrementPostsOffset },
+      postStore: { postsOffset, incrementPostsOffset, posts, getPosts },
     },
   } = useStores()
+
+  useEffect(() => {
+    getPosts()
+  }, [])
 
   return (
     <View style={FULL}>
       <InputSearchbar setText={setSearchText} text={searchText} />
       <BadgeList badges={BADGES} />
-      <PostList posts={POSTS} />
+      <PostList posts={posts} />
     </View>
   )
 })
