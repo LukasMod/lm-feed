@@ -2,6 +2,7 @@ import { makeObservable, observable, action, flow } from 'mobx'
 import postApi from '../services/post-api'
 import { GetPostsType, IBadge, IPost } from '../types'
 import { INCREMENT_DATA } from '../utils'
+import { delay } from '../utils/helpers'
 import RootStore from './root-store'
 
 const BADGES: IBadge[] = [
@@ -88,6 +89,21 @@ export default class PostStore {
       this.setPosts([])
       this.setPostLoading(false)
       console.log('getPosts', e.message)
+    }
+  }).bind(this)
+
+  createPost = flow(function* (this: PostStore, post: IPost, callbackSuccess: () => void) {
+    try {
+      this.setPostLoading(true)
+      // api call
+      yield delay(1000)
+      this.setPosts([...this.posts, post])
+
+      this.setPostLoading(false)
+      callbackSuccess()
+    } catch (e) {
+      this.setPostLoading(false)
+      console.log('createPost', e.message)
     }
   }).bind(this)
 }

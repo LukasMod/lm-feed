@@ -20,7 +20,7 @@ const headerStyle = {
 export const HomeStackNavigator = observer(() => {
   return (
     <HomeStack.Navigator
-      initialRouteName={'CreatePost'}
+      initialRouteName={'Home'}
       screenOptions={{
         headerStyle,
         headerTitleStyle,
