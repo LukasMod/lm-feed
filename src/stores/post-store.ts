@@ -1,6 +1,6 @@
 import { makeObservable, observable, action, flow } from 'mobx'
 import postApi from '../services/post-api'
-import { IBadge, IPost } from '../types'
+import { GetPostsType, IBadge, IPost } from '../types'
 import { INCREMENT_DATA } from '../utils'
 import RootStore from './root-store'
 
@@ -19,10 +19,12 @@ export default class PostStore {
       badges: observable,
       posts: observable,
       postsOffset: observable,
+      postsTotal: observable,
       incrementPostsOffset: action,
       postLoading: observable,
       resetPostsOffset: action,
       setPostLoading: action,
+      setPosts: action,
       setBadgeSelected: action,
     })
   }
@@ -31,10 +33,11 @@ export default class PostStore {
   badges: IBadge[] = BADGES
   posts: IPost[] = []
   postsOffset = 0
+  postsTotal = 0
   postLoading = false
 
-  incrementPostsOffset = () => {
-    this.postsOffset = this.postsOffset + INCREMENT_DATA
+  incrementPostsOffset = (limit: number) => {
+    this.postsOffset = this.postsOffset + limit
   }
 
   resetPostsOffset = () => {
@@ -43,6 +46,10 @@ export default class PostStore {
 
   setPostLoading = (isLoading: boolean) => {
     this.postLoading = isLoading
+  }
+
+  setPosts = (posts: IPost[]) => {
+    this.posts = posts
   }
 
   setBadgeSelected = (id: string) => {
@@ -54,12 +61,31 @@ export default class PostStore {
 
   getPosts = flow(function* (this: PostStore, offset = 0, limit: number = INCREMENT_DATA) {
     try {
+      if (this.postLoading) return
+
+      if (offset > this.postsTotal) {
+        console.log('reached getPosts total')
+        return
+      }
+
       this.setPostLoading(true)
-      const response: IPost[] = yield postApi.getPosts(offset, limit)
-      this.posts = response
+      const response: GetPostsType = yield postApi.getPosts(offset, limit)
+
+      this.postsTotal = response.total
+
+      if (offset === 0) {
+        this.resetPostsOffset()
+        this.setPosts(response.data)
+      } else {
+        console.log('loaded more posts')
+        this.setPosts([...this.posts, ...response.data])
+      }
+
+      this.incrementPostsOffset(limit)
+
       this.setPostLoading(false)
     } catch (e) {
-      this.posts = []
+      this.setPosts([])
       this.setPostLoading(false)
       console.log('getPosts', e.message)
     }

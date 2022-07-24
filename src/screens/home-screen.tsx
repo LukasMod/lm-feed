@@ -11,7 +11,7 @@ import { makeAutoObservable } from 'mobx'
 
 const FULL: ViewStyle = {
   flex: 1,
-  paddingVertical: spacing.screen,
+  paddingTop: spacing.screen,
 }
 
 class LocalStore {
@@ -33,7 +33,7 @@ export const HomeScreen = observer(() => {
 
   const {
     stores: {
-      postStore: { badges, postsOffset, incrementPostsOffset, posts, getPosts },
+      postStore: { badges, getPosts },
     },
   } = useStores()
 
@@ -45,7 +45,7 @@ export const HomeScreen = observer(() => {
     <View style={FULL}>
       <InputSearchbar setText={setSearchText} text={searchText} />
       <BadgeList badges={badges} />
-      <PostList posts={posts} />
+      <PostList />
     </View>
   )
 })

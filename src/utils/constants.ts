@@ -1,2 +1,2 @@
 export const ANIMATION_NORMAL = 200 // ms
-export const INCREMENT_DATA = 5
+export const INCREMENT_DATA = 10
