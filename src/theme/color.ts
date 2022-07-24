@@ -8,4 +8,5 @@ export const color = {
   descriptionText: palette.gray2,
   background: palette.gray,
   error: palette.red,
+  separator: palette.gray3,
 }

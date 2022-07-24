@@ -3,7 +3,7 @@ import { CreatePostScreen, HomeScreen, PostScreen } from '../screens'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { HomeStackNavigatorParamList } from '../types/navigation'
 import { color, fontSize, typography } from '../theme'
-import { ImageUser } from '../components'
+import { ButtonHeader, ImageUser } from '../components'
 import { observer } from 'mobx-react-lite'
 
 export const HomeStack = createNativeStackNavigator<HomeStackNavigatorParamList>()
@@ -20,7 +20,7 @@ const headerStyle = {
 export const HomeStackNavigator = observer(() => {
   return (
     <HomeStack.Navigator
-      initialRouteName={'Home'}
+      initialRouteName={'CreatePost'}
       screenOptions={{
         headerStyle,
         headerTitleStyle,
@@ -30,9 +30,25 @@ export const HomeStackNavigator = observer(() => {
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ title: 'Newsfeed', headerRight: () => <ImageUser withBorder /> }}
+        options={({ navigation }) => ({
+          title: 'Newsfeed',
+          headerRight: () => <ImageUser withBorder />,
+          headerLeft: () => {
+            const onPressAddPost = () => {
+              navigation.navigate('CreatePost')
+            }
+
+            return <ButtonHeader onPress={onPressAddPost} title="Dodaj post" />
+          },
+        })}
       />
-      <HomeStack.Screen name="CreatePost" component={CreatePostScreen} />
+      <HomeStack.Screen
+        name="CreatePost"
+        component={CreatePostScreen}
+        options={{
+          title: 'Nowy post',
+        }}
+      />
       <HomeStack.Screen name="Post" component={PostScreen} />
     </HomeStack.Navigator>
   )

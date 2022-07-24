@@ -9,6 +9,7 @@ export const icons = {
   dot: require('./Ellipse-405.png'),
   defaultUserImage: require('./default-user-image.png'),
   imageView: require('./image-view-1.png'),
+  addImage: require('./add-image.png'),
 }
 export enum Icons {
   SEARCH = 'search',
@@ -21,4 +22,5 @@ export enum Icons {
   DOT = 'dot',
   DEFAULT_USER_IMAGE = 'defaultUserImage',
   IMAGE_VIEW = 'imageView',
+  ADD_IMAGE = 'addImage',
 }
