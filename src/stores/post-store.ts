@@ -23,8 +23,10 @@ export default class PostStore {
       postsTotal: observable,
       incrementPostsOffset: action,
       postLoading: observable,
+      likeLoading: observable,
       resetPostsOffset: action,
       setPostLoading: action,
+      setLikeLoading: action,
       setPosts: action,
       setBadgeSelected: action,
     })
@@ -36,6 +38,7 @@ export default class PostStore {
   postsOffset = 0
   postsTotal = 0
   postLoading = false
+  likeLoading: { id: string; isLoading: boolean } = null
 
   incrementPostsOffset = (limit: number) => {
     this.postsOffset = this.postsOffset + limit
@@ -47,6 +50,10 @@ export default class PostStore {
 
   setPostLoading = (isLoading: boolean) => {
     this.postLoading = isLoading
+  }
+
+  setLikeLoading = (id: string, isLoading: boolean) => {
+    this.likeLoading = { id, isLoading }
   }
 
   setPosts = (posts: IPost[]) => {
@@ -103,6 +110,24 @@ export default class PostStore {
       callbackSuccess()
     } catch (e) {
       this.setPostLoading(false)
+      console.log('createPost', e.message)
+    }
+  }).bind(this)
+
+  toggleLikePost = flow(function* (this: PostStore, postId: string) {
+    try {
+      if (this.likeLoading?.isLoading) return
+
+      this.setLikeLoading(postId, true)
+      // api call
+      yield delay(500)
+      const postToLike = this.posts.find(post => post.id === postId)
+      if (postToLike) {
+        postToLike.isLiked = !postToLike.isLiked
+      }
+      this.setLikeLoading(postId, false)
+    } catch (e) {
+      this.setLikeLoading(postId, false)
       console.log('createPost', e.message)
     }
   }).bind(this)

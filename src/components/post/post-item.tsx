@@ -16,6 +16,8 @@ import { icons, Icons } from '../icon/icons'
 import { ImageUser } from '../image/image-user'
 import { observer } from 'mobx-react-lite'
 import { useNavigation } from '@react-navigation/native'
+import { useStores } from '../../hooks'
+import { ModalLoading } from '../modal/modal-loading'
 
 const CONTAINER: ViewStyle = {
   marginVertical: 15,
@@ -77,14 +79,22 @@ export interface IPostItem {
 export const PostItem = observer(({ item, open }: IPostItem) => {
   const navigation = useNavigation<HomeScreenNavProp>()
 
+  const {
+    stores: {
+      postStore: { toggleLikePost, likeLoading },
+    },
+  } = useStores()
+
   const onPressMore = () => {
     navigation.navigate('Post', { postId: item.id })
   }
   const onPressLike = () => {
-    console.log('onPressLike', item.title, item.id)
+    toggleLikePost(item.id)
   }
 
   if (!item) return null
+
+  const showLoading = likeLoading?.id === item.id && likeLoading?.isLoading
 
   return (
     <View style={CONTAINER}>
@@ -114,6 +124,7 @@ export const PostItem = observer(({ item, open }: IPostItem) => {
           )}
         </View>
       </View>
+      <ModalLoading show={showLoading} />
     </View>
   )
 })

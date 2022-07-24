@@ -1,11 +1,11 @@
+import { makeAutoObservable } from 'mobx'
+import { observer, useLocalObservable } from 'mobx-react-lite'
 import * as React from 'react'
-import { ViewStyle, FlatList, ActivityIndicator } from 'react-native'
+import { ActivityIndicator, FlatList, ViewStyle, Text } from 'react-native'
+import { useStores } from '../../hooks'
 import { color, spacing } from '../../theme'
 import { IPost } from '../../types'
 import { PostItem } from './post-item'
-import { observer, useLocalObservable } from 'mobx-react-lite'
-import { useStores } from '../../hooks'
-import { makeAutoObservable } from 'mobx'
 
 const CONTENT: ViewStyle = {
   backgroundColor: color.background,
@@ -65,6 +65,7 @@ export const PostList = observer(() => {
       ListFooterComponent={
         postLoading && <ActivityIndicator style={LOADING} color={color.primary} />
       }
+      ListEmptyComponent={<Text>Brak danych</Text>}
     />
   )
 })
