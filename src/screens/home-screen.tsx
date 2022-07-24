@@ -1,33 +1,39 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { View, ViewStyle } from 'react-native'
 import { BadgeList, InputSearchbar, PostList } from '../components'
 import { spacing } from '../theme'
-import { IBadge } from '../types'
 import { HomeScreenNavProp } from '../types/navigation'
-import { observer } from 'mobx-react-lite'
+import { observer, useLocalObservable } from 'mobx-react-lite'
 
 import { useStores } from '../hooks'
+import { makeAutoObservable } from 'mobx'
 
 const FULL: ViewStyle = {
   flex: 1,
   paddingVertical: spacing.screen,
 }
 
-const BADGES: IBadge[] = [
-  { id: 'badge-1', label: 'Tablica', isSelected: true },
-  { id: 'badge-2', label: 'Wydarzenia' },
-  { id: 'badge-3', label: 'Artykuły' },
-  { id: 'badge-4', label: 'Wiadomości' },
-]
+class LocalStore {
+  constructor() {
+    makeAutoObservable(this)
+  }
+
+  searchText = ''
+
+  setSearchText = (text: string) => {
+    this.searchText = text
+  }
+}
 
 export const HomeScreen = observer(() => {
   const navigation = useNavigation<HomeScreenNavProp>()
-  const [searchText, setSearchText] = useState('')
+
+  const { searchText, setSearchText } = useLocalObservable(() => new LocalStore())
 
   const {
     stores: {
-      postStore: { postsOffset, incrementPostsOffset, posts, getPosts },
+      postStore: { badges, postsOffset, incrementPostsOffset, posts, getPosts },
     },
   } = useStores()
 
@@ -38,7 +44,7 @@ export const HomeScreen = observer(() => {
   return (
     <View style={FULL}>
       <InputSearchbar setText={setSearchText} text={searchText} />
-      <BadgeList badges={BADGES} />
+      <BadgeList badges={badges} />
       <PostList posts={posts} />
     </View>
   )

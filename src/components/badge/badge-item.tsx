@@ -4,6 +4,7 @@ import { color, rounding, spacing, tpMediumDescriptionM } from '../../theme'
 import { IBadge } from '../../types'
 import { metrics } from '../../utils'
 import { observer } from 'mobx-react-lite'
+import { useStores } from '../../hooks'
 
 const CONTAINER: ViewStyle = {
   height: 30,
@@ -32,8 +33,14 @@ export interface IBadgeItem {
 }
 
 export const BadgeItem = observer(({ item }: IBadgeItem) => {
+  const {
+    stores: {
+      postStore: { setBadgeSelected },
+    },
+  } = useStores()
+
   const onPressBadge = () => {
-    console.log('onPressBadge', item.label, item.id)
+    setBadgeSelected(item.id)
   }
 
   if (!item) return null
