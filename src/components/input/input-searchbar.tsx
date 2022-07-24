@@ -4,6 +4,7 @@ import { color, rounding, tpMediumTextM } from '../../theme'
 import { metrics } from '../../utils'
 import { Icon } from '../icon/icon'
 import { Icons } from '../icon/icons'
+import { observer } from 'mobx-react-lite'
 
 export interface IInputSearchBar {
   setText: (text: string) => void
@@ -27,7 +28,7 @@ const TEXT: TextStyle = {
   flex: 1,
 }
 
-export const InputSearchbar = ({ setText, text }: IInputSearchBar) => {
+export const InputSearchbar = observer(({ setText, text }: IInputSearchBar) => {
   const inputRef = React.useRef<TextInput>()
 
   const onPressSearchbar = () => {
@@ -43,4 +44,4 @@ export const InputSearchbar = ({ setText, text }: IInputSearchBar) => {
       <TextInput style={TEXT} ref={inputRef} onChangeText={setText} value={text} />
     </TouchableOpacity>
   )
-}
+})

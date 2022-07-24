@@ -1,13 +1,14 @@
 import { useNavigation } from '@react-navigation/native'
-import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
 import { View, ViewStyle } from 'react-native'
 import { BadgeList, InputSearchbar, PostList } from '../components'
 import { spacing } from '../theme'
 import { IBadge } from '../types'
 import { HomeScreenNavProp } from '../types/navigation'
+import { observer } from 'mobx-react-lite'
 
 import POSTS from '../mocks/posts.json'
+import { useStores } from '../hooks'
 
 const FULL: ViewStyle = {
   flex: 1,
@@ -21,16 +22,21 @@ const BADGES: IBadge[] = [
   { id: 'badge-4', label: 'Wiadomości' },
 ]
 
-export const HomeScreen = () => {
+export const HomeScreen = observer(() => {
   const navigation = useNavigation<HomeScreenNavProp>()
   const [searchText, setSearchText] = useState('')
+
+  const {
+    stores: {
+      postStore: { postsOffset, incrementPostsOffset },
+    },
+  } = useStores()
 
   return (
     <View style={FULL}>
       <InputSearchbar setText={setSearchText} text={searchText} />
       <BadgeList badges={BADGES} />
       <PostList posts={POSTS} />
-      <StatusBar style="auto" />
     </View>
   )
-}
+})

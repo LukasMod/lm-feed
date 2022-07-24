@@ -7,6 +7,7 @@ import { HomeStackNavigator } from './home-stack-navigator'
 import { IconTabBar } from '../components'
 import { Icons } from '../components/icon/icons'
 import { useRoute } from '@react-navigation/native'
+import { observer } from 'mobx-react-lite'
 
 const FULL: ViewStyle = {
   flex: 1,
@@ -33,7 +34,7 @@ const TAB_BAR: ViewStyle = {
   paddingTop: 8,
 }
 
-export const BottomTabNavigator = () => {
+export const BottomTabNavigator = observer(() => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -72,4 +73,4 @@ export const BottomTabNavigator = () => {
       />
     </Tab.Navigator>
   )
-}
+})

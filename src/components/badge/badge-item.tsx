@@ -3,6 +3,7 @@ import { TouchableOpacity, ViewStyle, TextStyle, Text } from 'react-native'
 import { color, rounding, spacing, tpMediumDescriptionM } from '../../theme'
 import { IBadge } from '../../types'
 import { metrics } from '../../utils'
+import { observer } from 'mobx-react-lite'
 
 const CONTAINER: ViewStyle = {
   height: 30,
@@ -30,7 +31,7 @@ export interface IBadgeItem {
   item: IBadge
 }
 
-export const BadgeItem = ({ item }: IBadgeItem) => {
+export const BadgeItem = observer(({ item }: IBadgeItem) => {
   const onPressBadge = () => {
     console.log('onPressBadge', item.label, item.id)
   }
@@ -45,4 +46,4 @@ export const BadgeItem = ({ item }: IBadgeItem) => {
       <Text style={[TEXT, item.isSelected && TEXT_SELECTED]}>{item.label}</Text>
     </TouchableOpacity>
   )
-}
+})

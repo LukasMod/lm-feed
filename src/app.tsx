@@ -3,6 +3,7 @@ import { RootNavigator } from './navigation/root-navigator'
 import * as SplashScreen from 'expo-splash-screen'
 import { useFonts } from './hooks'
 
+
 const App = () => {
   const [appIsReady, setAppIsReady] = useState(false)
 

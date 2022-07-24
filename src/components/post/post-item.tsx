@@ -14,6 +14,7 @@ import { metrics, formatDateString } from '../../utils'
 import { Icon } from '../icon/icon'
 import { icons, Icons } from '../icon/icons'
 import { ImageUser } from '../image/image-user'
+import { observer } from 'mobx-react-lite'
 
 const CONTAINER: ViewStyle = {
   marginVertical: 15,
@@ -71,7 +72,7 @@ export interface IPostItem {
   item: IPost
 }
 
-export const PostItem = ({ item }: IPostItem) => {
+export const PostItem = observer(({ item }: IPostItem) => {
   const onPressMore = () => {
     console.log('onPressMore', item.title, item.id)
   }
@@ -109,4 +110,4 @@ export const PostItem = ({ item }: IPostItem) => {
       </View>
     </View>
   )
-}
+})

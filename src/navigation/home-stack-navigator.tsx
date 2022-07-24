@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { HomeStackNavigatorParamList } from '../types/navigation'
 import { color, fontSize, typography } from '../theme'
 import { ImageUser } from '../components'
+import { observer } from 'mobx-react-lite'
 
 export const HomeStack = createNativeStackNavigator<HomeStackNavigatorParamList>()
 
@@ -16,7 +17,7 @@ const headerStyle = {
   backgroundColor: color.background,
 }
 
-export const HomeStackNavigator = () => {
+export const HomeStackNavigator = observer(() => {
   return (
     <HomeStack.Navigator
       initialRouteName={'Home'}
@@ -29,10 +30,10 @@ export const HomeStackNavigator = () => {
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ title: 'Newsfeed', headerRight: () => <ImageUser withBorder/> }}
+        options={{ title: 'Newsfeed', headerRight: () => <ImageUser withBorder /> }}
       />
       <HomeStack.Screen name="CreatePost" component={CreatePostScreen} />
       <HomeStack.Screen name="Post" component={PostScreen} />
     </HomeStack.Navigator>
   )
-}
+})

@@ -3,6 +3,7 @@ import { ImageStyle, TouchableOpacity, StyleProp, ViewStyle, Image } from 'react
 import { color } from '../../theme'
 import { metrics } from '../../utils'
 import { icons, Icons } from '../icon/icons'
+import { observer } from 'mobx-react-lite'
 
 export interface IUserImage {
   style?: StyleProp<ImageStyle>
@@ -31,18 +32,20 @@ const IMAGE: ImageStyle = {
   borderRadius: 45,
 }
 
-export const ImageUser = ({ style, imageUrl, containerStyle, onPress, withBorder }: IUserImage) => {
-  return (
-    <TouchableOpacity
-      style={[CONTAINER, withBorder && BORDER, containerStyle]}
-      onPress={onPress}
-      disabled={!onPress}
-      activeOpacity={metrics.activeOpacity}>
-      {imageUrl ? (
-        <Image style={[IMAGE, style]} source={{ uri: imageUrl }} />
-      ) : (
-        <Image style={[IMAGE, style]} source={icons[Icons.DEFAULT_USER_IMAGE]} />
-      )}
-    </TouchableOpacity>
-  )
-}
+export const ImageUser = observer(
+  ({ style, imageUrl, containerStyle, onPress, withBorder }: IUserImage) => {
+    return (
+      <TouchableOpacity
+        style={[CONTAINER, withBorder && BORDER, containerStyle]}
+        onPress={onPress}
+        disabled={!onPress}
+        activeOpacity={metrics.activeOpacity}>
+        {imageUrl ? (
+          <Image style={[IMAGE, style]} source={{ uri: imageUrl }} />
+        ) : (
+          <Image style={[IMAGE, style]} source={icons[Icons.DEFAULT_USER_IMAGE]} />
+        )}
+      </TouchableOpacity>
+    )
+  }
+)

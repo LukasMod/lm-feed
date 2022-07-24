@@ -1,14 +1,15 @@
 import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { PostScreenNavProp } from '../types/navigation'
+import { observer } from 'mobx-react-lite'
 
-export const PostScreen = () => {
+export const PostScreen = observer(() => {
   const navigation = useNavigation<PostScreenNavProp>()
 
   return (
-    <View style={styles.container}>
+    <View>
       <Text
         onPress={() => {
           navigation.navigate('Home')
@@ -18,13 +19,4 @@ export const PostScreen = () => {
       <StatusBar style="auto" />
     </View>
   )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    // backgroundColor: '#fff',
-    flex: 1,
-    justifyContent: 'center',
-  },
 })

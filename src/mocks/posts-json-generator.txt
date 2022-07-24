@@ -1,0 +1,18 @@
+https://json-generator.com/
+
+POSTS 
+
+[
+  '{{repeat(50, 50)}}',
+  {
+    id: '{{objectId()}}',
+    avatarImageUrl: '',
+ 	name: '{{firstName()}} {{surname()}}',
+    imageUrl: '{{random("", "https://google.com")}}',
+    title: '{{lorem(5, "words")}}',
+    description: '{{lorem(1, "paragraphs")}}',
+    date:'{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
+    isLiked: '{{bool()}}',
+ 
+  }
+]
