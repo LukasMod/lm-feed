@@ -9,12 +9,13 @@ import {
   tpMediumPrimaryM,
   tpMediumTextM,
 } from '../../theme'
-import { IPost } from '../../types'
+import { HomeScreenNavProp, IPost } from '../../types'
 import { metrics, formatDateString } from '../../utils'
 import { Icon } from '../icon/icon'
 import { icons, Icons } from '../icon/icons'
 import { ImageUser } from '../image/image-user'
 import { observer } from 'mobx-react-lite'
+import { useNavigation } from '@react-navigation/native'
 
 const CONTAINER: ViewStyle = {
   marginVertical: 15,
@@ -70,11 +71,14 @@ const DESCRIPTION_MORE_TEXT: TextStyle = {
 
 export interface IPostItem {
   item: IPost
+  open?: boolean
 }
 
-export const PostItem = observer(({ item }: IPostItem) => {
+export const PostItem = observer(({ item, open }: IPostItem) => {
+  const navigation = useNavigation<HomeScreenNavProp>()
+
   const onPressMore = () => {
-    console.log('onPressMore', item.title, item.id)
+    navigation.navigate('Post', { postId: item.id })
   }
   const onPressLike = () => {
     console.log('onPressLike', item.title, item.id)
@@ -98,14 +102,16 @@ export const PostItem = observer(({ item }: IPostItem) => {
         />
       </View>
       <View style={DESCRIPTION_CONTAINER}>
-        <Text style={DESCRIPTION_TEXT} numberOfLines={2}>
+        <Text style={DESCRIPTION_TEXT} numberOfLines={open ? undefined : 2}>
           {item.description}
         </Text>
         <View style={DESCRIPTION_FOOTER_CONTAINER}>
           <Text style={DESCRIPTION_DATE_TEXT}>{formatDateString(item.date)}</Text>
-          <TouchableOpacity onPress={onPressMore} activeOpacity={metrics.activeOpacity}>
-            <Text style={DESCRIPTION_MORE_TEXT}>Więcej</Text>
-          </TouchableOpacity>
+          {!open && (
+            <TouchableOpacity onPress={onPressMore} activeOpacity={metrics.activeOpacity}>
+              <Text style={DESCRIPTION_MORE_TEXT}>Więcej</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>
