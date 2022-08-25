@@ -49,7 +49,8 @@ export const BadgeItem = observer(({ item }: IBadgeItem) => {
     <TouchableOpacity
       style={[CONTAINER, item.isSelected && CONTAINER_SELECTED]}
       activeOpacity={metrics.activeOpacity}
-      onPress={onPressBadge}>
+      onPress={onPressBadge}
+      testID={'badgeItemId'}>
       <Text style={[TEXT, item.isSelected && TEXT_SELECTED]}>{item.label}</Text>
     </TouchableOpacity>
   )
